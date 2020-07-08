@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"  href="../layui/css/layui.css" th:href="@{/layui/css/layui.css}">
+
+</head>
+<body>
+<form class="layui-form" action="" lay-filter="example" id="form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">品牌</label>
+        <div class="layui-input-block">
+            <input type="text" name="type"  placeholder="请输入品牌" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">颜色</label>
+        <div class="layui-input-block">
+            <input type="text" name="color"  placeholder="请输入颜色" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">座位数</label>
+        <div class="layui-input-block">
+            <input type="text" name="seat"  placeholder="请输入座位数" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">百公里油耗</label>
+        <div class="layui-input-block">
+            <input type="text" name="gas"    placeholder="请输入百公里油耗" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">日租金</label>
+        <div class="layui-input-block">
+            <input type="text" name="rent"   placeholder="请输入日租金" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="sub" id="submit">提交</button>
+        </div>
+    </div>
+</form>
+<script src="../layui/layui.js" th:src="@{/layui/layui.js}" ></script>
+<script src="../js/newsTable.js"th:src="@{/js/newsTable.js}" ></script>
+</body>
+</html>

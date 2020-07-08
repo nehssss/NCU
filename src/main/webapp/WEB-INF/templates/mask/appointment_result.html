@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="cn" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../layui/css/layui.css" th:href="@{/layui/css/layui.css}">
+</head>
+
+<body>
+<div class="layui-card">
+    <!--<div class="layui-card-header">结果查询</div>-->
+    <div class="layui-card-body">
+        <form id="result" class="layui-form" action="" lay-filter="example">
+            <div class="layui-form-item">
+                <label class="layui-form-label" style="width: 100px">手机号码</label>
+                <div class="layui-input-block">
+                    <input id="phone" type="phone" name="phone" lay-verify="title" autocomplete="off" placeholder="请输入手机号码" style="width: 700px" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label" style="width: 100px">证件号码后6位</label>
+                <div class="layui-input-block">
+                    <input id="identity" type="password" name="identity" placeholder="证件号码后6位" autocomplete="off"  style="width: 700px" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button id="submit_result" type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                </div>
+            </div>
+        </form>
+        <table id="demo" lay-filter="resultTable"></table>
+    </div>
+</div>
+<script src="../layui/layui.js" th:src="@{/layui/layui.js}"></script>
+<script src="../js/date.js" th:src="@{/js/date.js}"></script>
+<script src="../js/appointment_result.js" th:src="@{/js/appointment_result.js}"></script>
+<script src="../js/date.js" th:src="@{/js/date.js}"></script>
+</body>
+</html>

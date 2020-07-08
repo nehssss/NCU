@@ -1,0 +1,66 @@
+.contain{
+    border: 1px solid #FBFBFB;
+    margin: 0 auto;
+    width: 920px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: space-around;
+}
+.item{
+    padding-top: 25px;
+    text-align: center;
+    width: 260px;
+    height: 90px;
+    flex-grow:1;
+    flex-shrink: 1;
+}
+@-webkit-keyframes  shineGary {
+    from { -webkit-box-shadow: 0 0 5px #bbb; }
+    50% { -webkit-box-shadow: 0 0 15px #fff9ec; }
+    to { -webkit-box-shadow: 0 0 5px #bbb; }
+}
+
+.shine_Gary{
+    -webkit-animation-name: shineGary;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: infinite;
+}
+
+b,em{
+    padding-top: 10px;
+    font-style:normal;
+    font-weight: normal;
+    font-size: 12px;
+}
+.item>strong{
+    margin-top: 5px;
+    font-size: 18px;
+}
+.item>div{
+    font-weight: bold;
+    font-size: 16px;
+}
+
+div>img{
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: auto;
+}
+#test1{
+    margin: 0 auto;
+    margin-top: 100px;
+}
+#test2{
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.body{
+    background-image: url(/index/img/backimg.png);
+    background-repeat: repeat-y;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}

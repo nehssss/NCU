@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"  href="../layui/css/layui.css" th:href="@{/layui/css/layui.css}">
+
+</head>
+<body>
+<form class="layui-form" action="" lay-filter="example" id="form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">ID</label>
+        <div class="layui-input-block">
+            <input type="text"  disabled="disabled" id="id" autocomplete="off" class="layui-input" style="border: none"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">品牌</label>
+        <div class="layui-input-block">
+            <input type="text"  disabled="disabled" id="type" autocomplete="off" class="layui-input" style="border: none"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">颜色</label>
+        <div class="layui-input-block">
+            <input type="text"  disabled="disabled" id="color" autocomplete="off" class="layui-input" style="border: none"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">座位数</label>
+        <div class="layui-input-block">
+            <input type="text"  disabled="disabled" id="seat" autocomplete="off" class="layui-input" style="border: none"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">百公里油耗</label>
+        <div class="layui-input-block">
+            <input type="text"  disabled="disabled" id="gas" autocomplete="off" class="layui-input" style="border: none"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">日租金</label>
+
+        <div class="layui-input-block">
+            <input type="text"  disabled="disabled" id="rent" autocomplete="off" class="layui-input" style="border: none"/>
+<!--            <input type="text" name="rent"   placeholder="请输入日租金" autocomplete="off" class="layui-input">-->
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">添加者</label>
+
+        <div class="layui-input-block">
+            <input type="text"  disabled="disabled" id="userid" autocomplete="off" class="layui-input" style="border: none"/>
+            <!--            <input type="text" name="rent"   placeholder="请输入日租金" autocomplete="off" class="layui-input">-->
+        </div>
+    </div>
+</form>
+<script>
+    function child(data) {
+        document.getElementById("id").value=data.id;
+        document.getElementById("type").value=data.type;
+        document.getElementById("color").value=data.color;
+        document.getElementById("seat").value=data.seat;
+        document.getElementById("gas").value=data.gas;
+        document.getElementById("rent").value=data.rent;
+        document.getElementById("userid").value=data.userId;
+        console.log(data.rent);
+        // $("input[name='account']").val(data[0].account);
+        // $("input[name='password']").val(data[0].password);
+        // $("input[name='carameId']").val(data[0].carame_id);
+        // $("input[name='workCityNames']").val(data[0].work_city_names);
+    }
+</script>
+<script src="../layui/layui.js" th:src="@{/layui/layui.js}" ></script>
+<script src="../js/newsTable.js"th:src="@{/js/newsTable.js}" ></script>
+</body>
+</html>

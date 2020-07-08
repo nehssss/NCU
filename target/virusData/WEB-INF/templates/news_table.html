@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入layui-->
+    <link rel="stylesheet" type="text/css" th:href="@{/layui/css/layui.css}"/>
+    <script th:src="@{/layui/layui.js}" type="text/javascript" charset="utf-8"></script>
+
+
+</head>
+<body>
+<div class="like" style="margin-top: 10px;margin-left: 35%">
+    搜索车辆
+    <div class="layui-inline">
+        <input class="layui-input" name="title" id="titleLike" autocomplete="off" />
+    </div>
+    <button class="layui-btn" data-type="reload" id="re" >搜索</button>
+</div>
+<table id="demo" lay-filter="newsTable"></table>
+<script type="text/html" id="bar">
+    <a  class="layui-btn layui-btn-xs" lay-event="add">添加车辆</a>
+    <a  class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">批量删除</a>
+</script>
+<script type="text/html" id="barDemo">
+  <div class="layui-btn-container">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+  </div>
+</script>
+<!--引入自己的js对表格进行数据渲染-->
+<script th:src="@{/js/newsTable.js}" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>
