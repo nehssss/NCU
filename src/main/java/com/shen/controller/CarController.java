@@ -1,10 +1,12 @@
 package com.shen.controller;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.shen.dao.CarInfoMapper;
 import com.shen.pojo.CarInfo;
 import com.shen.pojo.Result;
 import com.shen.pojo.Users;
 import com.shen.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -46,24 +48,20 @@ public class CarController {
         }
         @RequestMapping("/add")
         @ResponseBody
+        @DateTimeFormat(pattern = "yyyy-MM-dd")
+        @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
         public  Result add(CarInfo carInfo  ,HttpServletRequest request){
             Result  result = new Result();
             HttpSession session = request.getSession();
 
             Users user=(Users)session.getAttribute("user");
-            System.out.println(user.getPassword());
-            System.out.println(carInfo);
-            // 自己加一个 随机的id  用UUID
-            //  video 添加一个日期  （当天日期）
-            //    userId  用 "admin"代替
-            // getVideoPath()  需要拼上  "video/" 再传给数据库
-            // 继续完成添加功能
-            // 调用insert  方法
+
             try{
                 String  id = UUID.randomUUID().toString();
 
                 carInfo.setId(id);
                 carInfo.setUserId(user.getNickname());
+                carInfo.setAdddate(new Date());
                 carInfoMapper.insert(carInfo);
                 result.setMessage("success");
                 result.setStatus("200");

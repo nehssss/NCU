@@ -39,12 +39,31 @@
         </div>
     </div>
     <div class="layui-form-item">
+        <label class="layui-form-label">生产日期</label>
+        <div class="layui-input-block">
+            <input type="text" name="outdate"   id="outdate" placeholder="请选择生产日期"  class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn" lay-submit lay-filter="sub" id="submit">提交</button>
         </div>
     </div>
 </form>
 <script src="../layui/layui.js" th:src="@{/layui/layui.js}" ></script>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#outdate' //指定元素
+            ,value: new Date()
+            ,trigger : 'click'
+        });
+    });
+</script>
 <script src="../js/newsTable.js"th:src="@{/js/newsTable.js}" ></script>
+
 </body>
 </html>

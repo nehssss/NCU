@@ -1,6 +1,10 @@
 package com.shen.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
+import java.util.Date;
 
 public class CarInfo implements Serializable {
     private String id;
@@ -16,6 +20,10 @@ public class CarInfo implements Serializable {
     private Float rent;
 
     private String userId;
+
+    private Date outdate;
+
+    private Date adddate;
 
     private static final long serialVersionUID = 1L;
 
@@ -73,5 +81,23 @@ public class CarInfo implements Serializable {
 
     public void setUserId(String userId) {
         this.userId = userId == null ? null : userId.trim();
+    }
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+    public Date getOutdate() {
+        return outdate;
+    }
+
+    public void setOutdate(Date outdate) {
+        this.outdate = outdate;
+    }
+
+    public Date getAdddate() {
+        return adddate;
+    }
+
+    public void setAdddate(Date adddate) {
+        this.adddate = adddate;
     }
 }

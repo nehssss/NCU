@@ -9,6 +9,8 @@
     <result column="gas" property="gas" jdbcType="REAL" />
     <result column="rent" property="rent" jdbcType="REAL" />
     <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="outdate" property="outdate" jdbcType="TIMESTAMP" />
+    <result column="adddate" property="adddate" jdbcType="TIMESTAMP" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from carinfo
@@ -16,11 +18,11 @@
   </delete>
   <insert id="insert" parameterType="com.shen.pojo.CarInfo" >
     insert into carinfo (ID, type, color, 
-      seat, gas, rent, user_id
-      )
+      seat, gas, rent, user_id, 
+      outdate, adddate)
     values (#{id,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{color,jdbcType=VARCHAR}, 
-      #{seat,jdbcType=INTEGER}, #{gas,jdbcType=REAL}, #{rent,jdbcType=REAL}, #{userId,jdbcType=VARCHAR}
-      )
+      #{seat,jdbcType=INTEGER}, #{gas,jdbcType=REAL}, #{rent,jdbcType=REAL}, #{userId,jdbcType=VARCHAR}, 
+      #{outdate,jdbcType=TIMESTAMP}, #{adddate,jdbcType=TIMESTAMP})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.shen.pojo.CarInfo" >
     update carinfo
@@ -29,16 +31,18 @@
       seat = #{seat,jdbcType=INTEGER},
       gas = #{gas,jdbcType=REAL},
       rent = #{rent,jdbcType=REAL},
-      user_id = #{userId,jdbcType=VARCHAR}
+      user_id = #{userId,jdbcType=VARCHAR},
+      outdate = #{outdate,jdbcType=TIMESTAMP},
+      adddate = #{adddate,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select ID, type, color, seat, gas, rent, user_id
+    select ID, type, color, seat, gas, rent, user_id, outdate, adddate
     from carinfo
     where ID = #{id,jdbcType=VARCHAR}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select ID, type, color, seat, gas, rent, user_id
+    select ID, type, color, seat, gas, rent, user_id, outdate, adddate
     from carinfo
   </select>
 </mapper>

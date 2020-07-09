@@ -38,6 +38,16 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
             , {field: 'seat', title: '座位数', align: 'center'}
             , {field: 'rent', title: '日租金', align: 'center'}
             , {field: 'gas', title: '百公里耗油', align: 'center'}
+            ,{field: 'outdate', title: '出厂日期·',  sort: true, align:'center',edit:"text",
+                templet:function (e) {
+                    return showTime(e.adddate);
+                }
+            }
+            ,{field: 'adddate', title: '生产日期',  sort: true, align:'center',edit:"text",
+                templet:function (e) {
+                    return showTime(e.outdate);
+                }
+            }
             ,{fixed: 'right', title:'操作', toolbar: '#barDemo',width: 80}//操作
         ]]
     });
@@ -83,7 +93,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
                     title:"添加车辆",//iframe 框架窗口
                     shade:0.8, //窗口外部阴影配置
                     shadeClose:true,
-                    area:['80%','80%'],
+                    area:['60%','90%'],
                     content:"../templates/add_news.html"
                 })
                 break;
@@ -166,7 +176,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
 
         // ajax 与后台传值
         $.ajax({
-            url:"/cartest_war_exploded/car/add",
+            url:"../car/add",
             type:"post",
             data:formdata,
             dataType:'json',
