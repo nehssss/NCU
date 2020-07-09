@@ -1,7 +1,9 @@
 package com.shen.controller;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.shen.dao.CarInfoMapper;
+import com.shen.dao.OperateMapper;
 import com.shen.pojo.CarInfo;
+import com.shen.pojo.Operate;
 import com.shen.pojo.Result;
 import com.shen.pojo.Users;
 import com.shen.service.CarService;
@@ -22,8 +24,11 @@ public class CarController {
         @Autowired
         CarInfoMapper carInfoMapper;
 
-    @Autowired
-    CarService carService;
+        @Autowired
+        CarService carService;
+
+        @Autowired
+    OperateMapper operateMapper;
 
 
     @RequestMapping("/show")
@@ -48,17 +53,20 @@ public class CarController {
         }
         @RequestMapping("/add")
         @ResponseBody
-        @DateTimeFormat(pattern = "yyyy-MM-dd")
-        @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
         public  Result add(CarInfo carInfo  ,HttpServletRequest request){
             Result  result = new Result();
             HttpSession session = request.getSession();
 
             Users user=(Users)session.getAttribute("user");
+            Operate op=new Operate();
 
             try{
                 String  id = UUID.randomUUID().toString();
-
+                op.setId(id+new Date());
+                op.setOpName(user.getUsername());
+                op.setOpTime(new Date());
+                op.setOpType("add");
+                operateMapper.insert(op);
                 carInfo.setId(id);
                 carInfo.setUserId(user.getNickname());
                 carInfo.setAdddate(new Date());
@@ -79,8 +87,19 @@ public class CarController {
     @ResponseBody
     public  Result delete(String[] ids,HttpServletRequest request){
         Result  result = new Result();
+        HttpSession session = request.getSession();
+
+        Users user=(Users)session.getAttribute("user");
         System.out.println("传过来的数组值是"+ Arrays.toString(ids));
+        Operate op=new Operate();
         try{
+
+            String  id = UUID.randomUUID().toString();
+            op.setId(id+new Date());
+            op.setOpName(user.getUsername());
+            op.setOpTime(new Date());
+            op.setOpType("del");
+            operateMapper.insert(op);
             carService.del(ids);
             // 删除成功
             result.setMessage("success");

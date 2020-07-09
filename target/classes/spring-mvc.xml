@@ -10,12 +10,14 @@
          http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+
     <!-- 定义自动扫描包的路径,在此处仅扫描Controller所在的包，如果有多个需要逗号分隔。需要注意：此处扫描和spring的自动扫描的包不要出现重叠-->
     <context:component-scan base-package="com.shen.controller">
     </context:component-scan>
     <!-- 注册spring mvc的注解驱动，只有注册了springmvc才能使用完整的注解功能 -->
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
+
             <!-- 将StringHttpMessageConverter的默认编码设为UTF-8 -->
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                 <constructor-arg value="UTF-8"/>
@@ -54,7 +56,6 @@
         <property name="templateEngine" ref="templateEngine"/>
         <property name="characterEncoding" value="UTF-8"/>
     </bean>
-
 
     <!--所有静态资源需要重新映射 -->
     <mvc:resources location="/WEB-INF/js/" mapping="/js/**">

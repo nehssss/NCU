@@ -70,7 +70,8 @@
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
-        <table tableName="operate" domainObjectName="Operate"
+        <table tableName="operate" domainObjectName="Operate
+"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
