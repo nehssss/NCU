@@ -25,6 +25,8 @@ public class CarInfo implements Serializable {
 
     private Date adddate;
 
+    private String img;
+
     private static final long serialVersionUID = 1L;
 
     public String getId() {
@@ -83,12 +85,12 @@ public class CarInfo implements Serializable {
         this.userId = userId == null ? null : userId.trim();
     }
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     public Date getOutdate() {
         return outdate;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     public void setOutdate(Date outdate) {
         this.outdate = outdate;
     }
@@ -99,5 +101,13 @@ public class CarInfo implements Serializable {
 
     public void setAdddate(Date adddate) {
         this.adddate = adddate;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img == null ? null : img.trim();
     }
 }

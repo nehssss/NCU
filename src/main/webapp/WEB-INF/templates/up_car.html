@@ -11,31 +11,31 @@
     <div class="layui-form-item">
         <label class="layui-form-label">品牌</label>
         <div class="layui-input-block">
-            <input type="text" name="type"  placeholder="请输入品牌" autocomplete="off" class="layui-input">
+            <input type="text" name="type" id="type" placeholder="请输入品牌" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">颜色</label>
         <div class="layui-input-block">
-            <input type="text" name="color"  placeholder="请输入颜色" autocomplete="off" class="layui-input">
+            <input type="text" name="color"  id="color" placeholder="请输入颜色" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">座位数</label>
         <div class="layui-input-block">
-            <input type="text" name="seat"  placeholder="请输入座位数" autocomplete="off" class="layui-input">
+            <input type="text" name="seat" id="seat" placeholder="请输入座位数" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">百公里油耗</label>
         <div class="layui-input-block">
-            <input type="text" name="gas"    placeholder="请输入百公里油耗" autocomplete="off" class="layui-input">
+            <input type="text" name="gas" id="gas"    placeholder="请输入百公里油耗" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">日租金</label>
         <div class="layui-input-block">
-            <input type="text" name="rent"   placeholder="请输入日租金" autocomplete="off" class="layui-input">
+            <input type="text" name="rent" id="rent"   placeholder="请输入日租金" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
@@ -44,6 +44,20 @@
         </div>
     </div>
 </form>
+<script>
+    function child(data) {
+        document.getElementById("type").value=data.type;
+        document.getElementById("color").value=data.color;
+        document.getElementById("seat").value=data.seat;
+        document.getElementById("gas").value=data.gas;
+        document.getElementById("rent").value=data.rent;
+
+        // $("input[name='account']").val(data[0].account);
+        // $("input[name='password']").val(data[0].password);
+        // $("input[name='carameId']").val(data[0].carame_id);
+        // $("input[name='workCityNames']").val(data[0].work_city_names);
+    }
+</script>
 <script src="../layui/layui.js" th:src="@{/layui/layui.js}" ></script>
 <script src="../js/newsTable.js"th:src="@{/js/newsTable.js}" ></script>
 </body>

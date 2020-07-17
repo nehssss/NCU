@@ -7,11 +7,13 @@ import com.shen.pojo.Operate;
 import com.shen.pojo.Result;
 import com.shen.pojo.Users;
 import com.shen.service.CarService;
+import com.shen.util.upUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -70,6 +72,7 @@ public class CarController {
                 carInfo.setId(id);
                 carInfo.setUserId(user.getNickname());
                 carInfo.setAdddate(new Date());
+                carInfo.setImg("imgs/"+carInfo.getImg());
                 carInfoMapper.insert(carInfo);
                 result.setMessage("success");
                 result.setStatus("200");
@@ -114,5 +117,61 @@ public class CarController {
         }
         return result;
     }
+
+    @RequestMapping("/query")
+    @ResponseBody
+    public Result Eidt(String type){
+
+        Result result = new Result();
+
+
+        try{
+
+            List<CarInfo> carInfos = carInfoMapper.selectByType(type);
+            System.out.println("查询的数据是"+carInfos);
+            if(carInfos == null){
+                result.setMessage("没有数据");
+                result.setStatus("200");
+            }
+            else{
+                result.setMessage("success");
+                // 把数据存到  结果集类中
+                result.setItem(carInfos);
+                result.setTotal(carInfos.size());
+            }
+        }
+        catch (Exception e){
+            result.setMessage("error");
+        }
+        return result;
+    }
+
+    @RequestMapping("/up")
+    @ResponseBody
+    public  Result up(MultipartFile file, HttpServletRequest request){
+        Result  result = new Result();
+        // 需要完成 文件上传的工具类
+        upUtil.upfile(file,request);
+        //  把文件名存到   result里   可以  显示在input 输入框里
+        result.setMessage(file.getOriginalFilename());
+        return result;
+    }
+
+
+//    @RequestMapping("/sc")
+//    @ResponseBody
+//    public  Result sc(MultipartFile  file,HttpServletRequest request){
+//        Result  result = new Result();
+//        MyPoi  myp = new MyPoi();
+//        List<Student> stus = myp.POIUtil(file, request);
+//        for (int i = 0;i<stus.size();i++){
+//            Student student = stus.get(i);
+//            studentMapper.insert(student);
+//        }
+//
+//        result.setMessage("success");
+//        return result;
+//    }
+//
 
 }

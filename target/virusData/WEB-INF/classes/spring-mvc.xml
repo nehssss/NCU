@@ -68,8 +68,8 @@
     </mvc:resources>
     <mvc:resources location="/WEB-INF/layui/" mapping="/layui/**">
     </mvc:resources>
-<!--    <mvc:resources location="/WEB-INF/video/" mapping="/video/**">-->
-<!--    </mvc:resources>-->
+    <mvc:resources location="/WEB-INF/imgs/" mapping="/imgs/**">
+    </mvc:resources>
 <!--    <mvc:resources location="/WEB-INF/bgm/" mapping="/bgm/**">-->
 <!--    </mvc:resources>-->
 

@@ -34,6 +34,11 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
             {type: 'checkbox', fixed: 'left'}
             , {field: 'id', title: 'ID', width: 150, sort: true, align: "center"}
             , {field: 'type', title: '品牌', align: "center"}
+            ,{field: 'imgPath', title: '图片', align:'center',
+                templet:function (e) {
+                    return "<img src='../"+e.img+"'style='height:150px;width:150px;'/>"
+                }
+            }
             , {field: 'color', title: '颜色', align: "center"}
             , {field: 'seat', title: '座位数', align: 'center'}
             , {field: 'rent', title: '日租金', align: 'center'}
@@ -48,7 +53,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
                     return showTime(e.outdate);
                 }
             }
-            ,{fixed: 'right', title:'操作', toolbar: '#barDemo',width: 80}//操作
+            ,{fixed: 'right', title:'操作', toolbar: '#barDemo',width: 100}//操作
         ]]
     });
 
@@ -154,6 +159,23 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
                 }
             })
         }
+        else if(obj.event === 'edit'){
+            layer.open({
+                type:2,
+                title:"编辑",//iframe 框架窗口
+                shade:0.8, //窗口外部阴影配置
+                shadeClose:true,
+                area:['40%','90%'],
+                content:"../templates/up_car.html",
+                success: function (layero, index) {
+                    // 获取子页面的iframe
+                    var iframe = window['layui-layer-iframe' + index];
+                    // 向子页面的全局函数child传参
+                    iframe.child(data)
+
+                }
+            })
+        }
     });
     //
     //
@@ -167,11 +189,9 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
         var formdata=new FormData(fd1);
 
 
-        //video_url
-        //获取input 视频文件名
 
-     //   var zhi = document.getElementById("video_url").value;
-      //  formdata.append("videoPath",zhi);
+       var imgs = document.getElementById("img").value;
+       formdata.append("img",imgs);
 
 
         // ajax 与后台传值
@@ -196,27 +216,66 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
     });
     //
     // //点击搜索按钮时 会进行表格的重载
-    // $("#re").on("click",function () {
-    //     //表格重载函数 搜索
-    //
-    //     table.reload('demo', {
-    //         url:"/virusData/news/query" ,//会把page和limit （在页面的分页参数里）加到路径后面
-    //         where: { //设定异步数据接口的额外参数，任意设
-    //             title: $("#titleLike").val()
-    //
-    //         }
-    //         , parseData: function (res) { //res 即为原始返回的数据
-    //             return {
-    //                 "code": 0, //解析接口状态
-    //                 "msg": res.message, //解析提示文本
-    //                 "count":100, //解析数据长度
-    //                 "data": res.item //解析数据列表
-    //             }
-    //         }
-    //         ,page: {
-    //             curr: 1 //重新从第 1 页开始
-    //         }
-    //     }); //只重载数据
+    $("#re").on("click",function () {
+        //表格重载函数 搜索
 
-    // })
+        table.reload('demo', {
+            url:"../car/query" ,//会把page和limit （在页面的分页参数里）加到路径后面
+            where: { //设定异步数据接口的额外参数，任意设
+                type: $("#titleLike").val()
+
+            }
+            , parseData: function (res) { //res 即为原始返回的数据
+                return {
+                    "code": 0, //解析接口状态
+                    "msg": res.message, //解析提示文本
+                    "count":100, //解析数据长度
+                    "data": res.item //解析数据列表
+                }
+            }
+            ,page: {
+                curr: 1 //重新从第 1 页开始
+            }
+        }); //只重载数据
+
+    });
+
+    // 文件上传  的实例
+    var uploadInst=  upload.render({
+        elem: '#chooseimg'
+        ,url: '../car/up'
+        ,auto: false //选择文件后不自动上传
+        ,bindAction: '#sure' //指向一个按钮触发上传
+        ,size:5000000
+        ,accept:'img'
+        ,done: function(res){
+            // layer.closeAll('loading'); //关闭loading
+            console.log(res.message)
+            // 文件上传之后  input 框显示 文件名
+            $("#img").val(res.message);
+            layer.msg("上传成功");
+        }
+        ,error: function(index){
+            layer.closeAll('loading'); //关闭loading
+        }
+    });
+
+    // // 对上传文件进行重载
+    // upload.render({
+    //     elem: '#shangchuan'
+    //     , url: '/nanda/videos/sc'
+    //     , auto: false //选择文件后不自动上传
+    //     , bindAction: '#myupload' //指向一个按钮触发上传
+    //     , accept: 'file'
+    //     , size: 5000000
+    //     , done: function (res) {
+    //         if (res.message = "success") {
+    //             layer.msg("上传成功");
+    //         }
+    //
+    //     }
+    //     , error: function (index) {
+    //         layer.closeAll('loading'); //关闭loading
+    //     }
+    // });
 });

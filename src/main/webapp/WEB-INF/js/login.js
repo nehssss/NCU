@@ -20,7 +20,8 @@ layui.use(['layer','form',"jquery"],function () {
                 success : function(res){
                    // layer.alert(res.message,{icon :2});
                     if(res.message === "success"){
-                        window.location.href ="home/index";
+                        window.location
+                            .href ="home/index";
                     }else {
                         layer.alert(res.message,{icon :2});
                         //如果登录失败 登陆中回复登录
